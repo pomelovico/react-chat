@@ -7,5 +7,6 @@ module.exports = function(app){
     app.route('/api/login')
         .post(function(req,res){
             usersCtrl.userLogin(req,res);
-        })
+        });
+
 };

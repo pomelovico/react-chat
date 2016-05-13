@@ -1,17 +1,25 @@
 /**
  * Created by LikoLu on 2016/5/13.
  */
+import es6Promise from 'es6-promise';
 import fetch from 'isomorphic-fetch';
+
+es6Promise.polyfill();
 
 function fetchPost(url, data) {
     return fetch(`http://localhost:8000/${url}`, {
-        method: 'POST',
         mode: 'cors',
-        body: JSON.stringify({body: data})
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        method: 'POST',
+        body: JSON.stringify(data)
     }).then(response=> {
         return response.json();
     })
 }
+
 
 function fetchGet(url) {
     return fetch(`http://localhost:8000/${url}`, {

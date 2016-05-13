@@ -8,10 +8,11 @@ import {bindActionCreators} from 'redux';
 
 class Login extends Component{
     toLogin(){
-        let name = this.refs.name;
-        let pwd = this.refs.pwd;
-        if(name && pwd)
-            this.props.login('user/login',{username:name, userpwd:pwd})
+        let name = this.refs.name.value;
+        let pwd = this.refs.pwd.value;
+        if(name && pwd){
+            this.props.login('login',{username:name, userpwd:pwd})
+        }
     }
     componentWillReceiveProps(nextProps){
         console.log(this.props);
@@ -20,9 +21,9 @@ class Login extends Component{
     render() {
         return (<div id="login-page" >
             <div>
-                <label for="">name:</label><input type="text" ref="name"  /><br/>
-                <label for="">password:</label><input type="password" ref="pwd"  /><br/>
-                <button onClick={this.toLogin} className="btn btn-block" >login</button>
+                <label >name:</label><input  type="text" ref="name" /><br/>
+                <label >password:</label><input type="password" ref="pwd"  /><br/>
+                <button onClick={()=>this.toLogin()} className="btn btn-block" >login</button>
             </div>
         </div>)
     }
