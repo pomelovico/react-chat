@@ -3,8 +3,8 @@
  */
 import es6Promise from 'es6-promise';
 import fetch from 'isomorphic-fetch';
-
 es6Promise.polyfill();
+
 
 function fetchPost(url, data) {
     return fetch(`http://localhost:8000/${url}`, {
@@ -29,6 +29,13 @@ function fetchGet(url) {
     }).then(response=> {
         return response.json();
     })
+}
+
+function socketEmit(type,data){
+
+}
+function socketOn(type,callback){
+    // return io.on(type,)
 }
 export const request = {
     post:fetchPost,

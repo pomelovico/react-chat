@@ -3,8 +3,10 @@
  */
 import * as common from './common';
 import * as user from './user';
+import * as chat from './chat';
 
 export {
     common,
-    user
+    user,
+    chat
 }
