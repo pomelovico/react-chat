@@ -3,14 +3,21 @@
  */
 import React,{Component} from 'react';
 
+class User extends Component{
+    render(){
+        return ()
+    }
+}
+
 export default class Chatroom extends Component{
     componentDidMount(){
-        
+
     }
     render(){
         const name = 'hello';
         return (<div id="chat-room">
             <h2>here is chatting room</h2>
+
         </div>)
     }
 }
