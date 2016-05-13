@@ -15,8 +15,10 @@ class Login extends Component{
         }
     }
     componentWillReceiveProps(nextProps){
-        console.log(this.props);
-        console.log(nextProps);
+        console.log(this);
+        if(nextProps.user.islogin) {
+            this.props.history.replace('/');
+        }
     }
     render() {
         return (<div id="login-page" >
@@ -30,7 +32,7 @@ class Login extends Component{
 }
 export default connect(state=>{
     return {
-        user:state.user
+        user:state.userinfo
     }
 },dispatch=>{
     let actions = bindActionCreators(Action.user, dispatch);

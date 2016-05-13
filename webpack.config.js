@@ -46,7 +46,8 @@ module.exports = {
         new webpack.NoErrorsPlugin(),
         new webpack.ProvidePlugin({
             "Action": __dirname + "/src/js/actions/index.js",
-            "Common": __dirname + "/src/js/constants/index.js"
+            "Common": __dirname + "/src/js/constants/index.js",
+            'fetch': 'imports?this=>global!exports?global.fetch!whatwg-fetch'
         })
     ]/*,
     watch: true*/
