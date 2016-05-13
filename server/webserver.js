@@ -5,6 +5,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 var app = express();
+var http = require('http').Server(app);
 
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -23,8 +24,9 @@ app.all('*', function(req, res, next) {
   else
     next();
 });
-
 require('./routes/users.routes.js')(app);
+
+require('./socket/socket-server.js')(http);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -59,5 +61,8 @@ app.use(function(err, req, res, next) {
 
 app.listen(8000,function(){
   console.log('listening on 8000');
-})
+});
+http.listen(8001,function(){
+   console.log('listening on 8001')
+});
 module.exports = app;

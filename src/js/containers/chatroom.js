@@ -14,14 +14,29 @@ class User extends Component{
 }
 
 class Chatroom extends Component{
+    componentWillMount(){
+        this.props.buildConnect({
+            userid:(Math.random()*100).toFixed(0),
+            username:'hhh'+(Math.random()*10).toFixed(0)
+        });
+    }
     componentDidMount(){
-
+        this.props.enterChatroom({
+            userid:(Math.random()*100).toFixed(0),
+            username:'hhh'+(Math.random()*10).toFixed(0)
+        });
+    }
+    sendMessage(){
+        this.props.sendMessage({
+            userid: '42424242',
+            username: 'liko',
+            content: 'helo'
+        });
     }
     render(){
-        const name = 'hello';
         return (<div id="chat-room">
             <h2>here is chatting room</h2>
-            <User username={this.props.username}/>
+            <button onClick={()=>this.sendMessage()}>send</button>
         </div>)
     }
 }
@@ -30,5 +45,10 @@ export default connect(state=>{
         chat: state.chat
     }
 },dispatch=>{
-    return {}
+    let actions = bindActionCreators(Action.chat, dispatch);
+    return {
+        enterChatroom:actions.enterChatroom,
+        sendMessage:actions.sendMessage,
+        buildConnect:actions.buildConnect
+    }
 })(Chatroom)
