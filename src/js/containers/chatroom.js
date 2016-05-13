@@ -5,7 +5,9 @@ import React,{Component} from 'react';
 
 class User extends Component{
     render(){
-        return ()
+        return (<div>
+            <h5>{this.props.username}</h5>
+        </div>)
     }
 }
 
