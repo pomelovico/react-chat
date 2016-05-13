@@ -1,18 +1,11 @@
 /**
- * Created by LikoLu on 2016/5/10.
+ * Created by LikoLu on 2016/5/13.
  */
-var wsServer = 'ws://localhost:8888/';
-var websocket = new WebSocket(wsServer);
-websocket.binaryType = "arraybuffer";
-websocket.onopen = function(event){
-    console.log('open');
-    websocket.send('I am the client and I\'m listening!');
+import React from 'react';
+import ReactDOM from 'react-dom';
+import Root from './containers/root';
 
-};
-websocket.onclose = function(e){
-    console.log('close',e);
-};
-websocket.onmessage = function(e){
-    console.log('received message');
-    console.log(e);
-};
+ReactDOM.render(
+    <Root />,
+    document.getElementById('App')
+);

@@ -7,7 +7,7 @@ var http = require('http');
 var Server = http.createServer();
 var io = require('socket.io')(Server);
 
-var mongo = require('./src/js/mongo');
+var mongo = require('./mongo2');
 
 
 var onlineUsers = {};

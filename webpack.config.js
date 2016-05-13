@@ -10,10 +10,6 @@ module.exports = {
         'webpack/hot/dev-server',
         './src/js/index.js'
     ],
-    /*entry: {
-        bundle:'./index.js'
-
-    },*/
     output: {
         publicPath:'/public/js',
         path: __dirname+'/public/js',
