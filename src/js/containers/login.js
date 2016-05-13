@@ -10,8 +10,9 @@ class Login extends Component{
     toLogin(){
         let name = this.refs.name.value;
         let pwd = this.refs.pwd.value;
+
         if(name && pwd){
-            this.props.login('login',{username:name, userpwd:pwd})
+            this.props.login('login',{username:name, userpwd:pwd});
         }
     }
     componentWillReceiveProps(nextProps){
