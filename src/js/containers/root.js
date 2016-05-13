@@ -13,6 +13,7 @@ let store =  configureStore(rootReducer);
 
 import Login from './login';
 import App from './app';
+import Chatroom from './chatroom';
 
 export default class Root extends Component{
     render(){

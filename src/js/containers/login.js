@@ -2,7 +2,6 @@
  * Created by LikoLu on 2016/5/13.
  */
 import React,{Component} from 'react';
-
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
@@ -16,9 +15,8 @@ class Login extends Component{
         }
     }
     componentWillReceiveProps(nextProps){
-        console.log(this);
         if(nextProps.user.islogin) {
-            this.props.history.replace('/');
+            this.context.router.push('/chatroom');
         }
     }
     render() {
@@ -31,6 +29,11 @@ class Login extends Component{
         </div>)
     }
 }
+
+Login.contextTypes = {
+    router:React.PropTypes.object.isRequired
+}
+
 export default connect(state=>{
     return {
         user:state.userinfo
