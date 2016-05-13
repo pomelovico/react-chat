@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="format-detection" content="email=no"/>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0" name="viewport">
+    <title>login</title>
+</head>
+<body>
+<div>
+    <div>
+        <label for="">name:</label><input type="text" name="username" id="username" /><br>
+        <label for="">password:</label><input type="text" name="userpwd" id="userpwd" /><br>
+        <button id='submit-btn' class="btn btn-block" >submit</buttonid>
+    </div>
+</div>
+<script src="//cdn.bootcss.com/jquery/1.12.0/jquery.min.js"></script>
+<script>
+    $(function(){
+        $('#submit-btn').click(function(){
+            var name = $('#username').val() || null;
+            var pwd = $('#userpwd').val() || null;
+            if(name && pwd){
+                $.ajax({
+                    url:'http://localhost:8000/api/login',
+                    type:'post',
+                    dataType:'json',
+                    data:{
+                        username:name,
+                        userpwd:pwd
+                    },
+                    success:function(data){
+                        console.log(data);
+                    },
+                    error:function(){
+                        console.log('failed');
+                    }
+                });
+            }
+        });
+    });
+</script>
+</body>
+</html>
