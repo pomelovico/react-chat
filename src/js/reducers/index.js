@@ -6,7 +6,8 @@ import chat from './chat';
 
 const initialState = {
     userinfo:{
-        islogin:false
+        islogin:false,
+        user:{}
     },
     chatroom:''
 };

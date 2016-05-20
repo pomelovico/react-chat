@@ -15,34 +15,44 @@ class User extends Component{
 
 class Chatroom extends Component{
     componentWillMount(){
-        this.props.buildConnect({
-            userid:(Math.random()*100).toFixed(0),
-            username:'hhh'+(Math.random()*10).toFixed(0)
-        });
+        this.props.userinfo.islogin
+            ? this.props.buildConnect({
+                userid: this.props.userinfo.user.id,
+                username:this.props.userinfo.user.name
+            })
+            : this.context.router.push('login');
     }
     componentDidMount(){
-        this.props.enterChatroom({
-            userid:(Math.random()*100).toFixed(0),
-            username:'hhh'+(Math.random()*10).toFixed(0)
-        });
+        this.props.userinfo.islogin
+            ? this.props.enterChatroom({
+                userid: this.props.userinfo.user.id,
+                username:this.props.userinfo.user.name
+            })
+            : this.context.router.push('login');
     }
     sendMessage(){
         this.props.sendMessage({
-            userid: '42424242',
-            username: 'liko',
-            content: 'helo'
+            userid: this.props.userinfo.user.id,
+            username: this.props.userinfo.user.name,
+            content: this.refs.message.value
         });
     }
     render(){
         return (<div id="chat-room">
             <h2>here is chatting room</h2>
+            <label >say something:</label><input  type="text" ref="message" /><br/>
             <button onClick={()=>this.sendMessage()}>send</button>
         </div>)
     }
 }
+
+Chatroom.contextTypes = {
+    router:React.PropTypes.object.isRequired
+};
 export default connect(state=>{
     return {
-        chat: state.chat
+        chat: state.chat,
+        userinfo: state.userinfo
     }
 },dispatch=>{
     let actions = bindActionCreators(Action.chat, dispatch);

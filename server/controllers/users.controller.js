@@ -10,14 +10,17 @@ exports.userLogin = function(req,res){
         console.log("Connected correctly to server");
         var result = db.collection('liko').find();
         var ifHas = false;
-        console.log(req.body);
+        // console.log(req.body);
+        var user = {};
         result.toArray((err,docs)=>{
             docs.map(v=>{
                 if(v.name == req.body.username){
                     ifHas = true;
+                    user['name'] = v.name;
+                    user['id'] = v._id;
                 }
             });
-            ifHas ? res.send({code:'8000',Content:{islogin:true}}) : res.send({code:'8001',Content:{islogin:false}});
+            res.send({code:'8001',Content:{islogin:ifHas,user:user}});
         });
     });
 }
