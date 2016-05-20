@@ -7,9 +7,12 @@ import chat from './chat';
 const initialState = {
     userinfo:{
         islogin:false,
-        user:{}
+        user:{},
+        friends:[]
     },
-    chatroom:''
+    chatroom:{
+        records:[]
+    }
 };
 
 export default function rootReducer(state = initialState, action){

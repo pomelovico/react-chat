@@ -7,11 +7,16 @@
 var onlineUsers = {};
 var onlineCount = 0;
 
+var users = {};
+
 module.exports = function(app){
     var io = require('socket.io')(app);
-    io.on('connection',function(socket){
+    io.sockets.on('connection',function(socket){
         console.log('a user connected');
         socket.on('login',function(obj){
+
+            users[obj.username] = socket;
+
             socket.name = obj.userid;
             if(!onlineUsers.hasOwnProperty(obj.userid)){
                 onlineUsers[obj.userid] = obj.username;
@@ -46,6 +51,12 @@ module.exports = function(app){
         socket.on('message',function(obj){
             io.emit('message',obj);
             console.log(obj.username+' say '+obj.content);
+        });
+        socket.on('private message',function(from, to, msg){
+            if(to in users){
+                users[to].emit('to'+to,{from, to, msg})
+            }
+            console.log(from+' say '+ msg+' to '+to);
         });
     })
 }

@@ -23,6 +23,12 @@ export function buildConnect(data){
                 data:msg
             });
         });
+        socket.on('to'+data.username,(data)=>{
+            dispatch({
+                type:Common.chat.PRIVATE_MESSAGE,
+                data:data
+            });
+        })
     }
 }
 
@@ -32,7 +38,15 @@ export function enterChatroom(data){
     }
 }
 export function sendMessage(data){
-    return ()=>{
-        socket.emit('message',data);
+    return (dispatch)=>{
+        dispatch({
+            type:Common.chat.PRIVATE_MESSAGE,
+            data:{
+                from:data.username,
+                to:data.to,
+                msg:data.msg
+            }
+        });
+        socket.emit('private message',data.username,data.to,data.msg);
     }
 }
