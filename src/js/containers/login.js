@@ -16,7 +16,8 @@ class Login extends Component{
     }
     componentWillReceiveProps(nextProps){
         if(nextProps.user.islogin) {
-            this.context.router.push('/chatroom');
+            console.log(this.context.router);
+            this.context.router.push('chatroom');
         }
     }
     render() {

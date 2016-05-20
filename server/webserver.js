@@ -59,9 +59,9 @@ app.use(function(err, req, res, next) {
 });*/
 
 
-app.listen(8000,function(){
+/*app.listen(8000,function(){
   console.log('listening on 8000');
-});
+});*/
 http.listen(8001,function(){
    console.log('listening on 8001')
 });

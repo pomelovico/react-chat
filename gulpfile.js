@@ -24,11 +24,22 @@ gulp.task('sass:watch' ,function () {
     livereload.listen();
     gulp.watch('./src/css/index.scss',['sass']);
 });*/
-gulp.task('webpack',function(){
+/*gulp.task('webpack',function(){
     gulp.src('./src/js/index.js').pipe(webpack(require('./webpack.config.js'))).pipe(livereload());
+});*/
+
+gulp.task('webpack',function(){
+    return gulp.src('./src/js/index.js')
+        .pipe(webpack(require('./webpack.config.js')))
+        .pipe(gulp.dest('./public/js'))
+        .pipe(livereload())
 });
 gulp.task('live',function(){
     livereload.listen();
-    gulp.watch(['./src/js/**/*.js'],['webpack']);
+    gulp.watch(['./src/js/**/*.js','index.html'],['webpack']);
 });
+/*gulp.task('live',function(){
+    livereload.listen();
+    gulp.watch(['./src/js/!**!/!*.js'],['webpack']);
+});*/
 

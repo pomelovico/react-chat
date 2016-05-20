@@ -7,7 +7,7 @@ es6Promise.polyfill();
 
 
 function fetchPost(url, data) {
-    return fetch(`http://localhost:8000/${url}`, {
+    return fetch(`http://localhost:8001/${url}`, {
         mode: 'cors',
         headers: {
             'Accept': 'application/json',

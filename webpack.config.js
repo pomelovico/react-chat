@@ -5,15 +5,18 @@ var webpack = require('webpack');
 var path = require('path');
 module.exports = {
     devtool: "source-map",
-    entry: [
+/*    entry: [
         'webpack-dev-server/client?http://localhost:3004', // WebpackDevServer host and port
         'webpack/hot/dev-server',
         './src/js/index.js'
-    ],
+    ],*/
     output: {
-        publicPath:'/public/js',
+        // publicPath:'/public/js',
         path: __dirname+'/public/js',
         filename: 'bundle.js'
+    },
+    entry: {
+        bundle:'./src/js/index.js'
     },
     resolve: {
         extensions: ['', '.js','jsx']
