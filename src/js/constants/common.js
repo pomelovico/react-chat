@@ -2,7 +2,7 @@
  * Created by LikoLu on 2016/4/19.
  */
 // export const rootPath = 'Projects/reduxApp/build/';
-export const rootPath = 'http://localhost:8001/';
+export const localHost = '192.168.191.1';
 
 /*
 export const IMAGES = {

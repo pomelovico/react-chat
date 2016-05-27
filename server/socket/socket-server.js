@@ -15,7 +15,7 @@ module.exports = function(app){
         console.log('a user connected');
         socket.on('login',function(obj){
 
-            users[obj.username] = socket;
+            users[obj.userid] = socket;
 
             socket.name = obj.userid;
             if(!onlineUsers.hasOwnProperty(obj.userid)){
@@ -23,16 +23,7 @@ module.exports = function(app){
                 onlineCount++;
             }
             io.emit('login',{onlineUsers:onlineUsers,onlineCount:onlineCount,user:obj});
-            console.log(obj.username+' enter into chatting room');
-/*            mongo.findUser(obj.username,function(flag){
-                socket.name = obj.userid;
-                if(!onlineUsers.hasOwnProperty(obj.userid)){
-                    onlineUsers[obj.userid] = obj.username;
-                    onlineCount++;
-                }
-                io.emit('login',{onlineUsers:onlineUsers,onlineCount:onlineCount,user:obj});
-                console.log(obj.username+' enter into chatting room');
-            });*/
+            console.log(obj.username+' login');
         });
 
         socket.on('disconnect',function(){
@@ -44,7 +35,7 @@ module.exports = function(app){
                 delete onlineUsers[socket.name];
                 onlineCount--;
                 io.emit('logout',{onlineUsers:onlineUsers,onlineCount:onlineCount,user:obj});
-                console.log(obj.username+' get out of chatting room');
+                console.log(obj.username+' logout');
             }
         });
 

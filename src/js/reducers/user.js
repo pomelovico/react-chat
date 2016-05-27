@@ -6,6 +6,7 @@ import objectAssign from 'object-assign';
 export default function user(state,action){
     switch(action.type){
         case Common.user.LOGIN:return objectAssign({},state,{islogin:action.data.islogin,user:action.data.user});
+        case Common.user.GET_CHATLIST:return objectAssign({},state,{friends:action.data});
         default: return state;
     }
 }

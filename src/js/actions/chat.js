@@ -2,9 +2,13 @@
  * Created by LikoLu on 2016/5/13.
  */
 var socket = '';
+var isConnected = false;
 export function buildConnect(data){
     return dispatch=>{
-        socket = io.connect('ws://localhost:8001');
+        isConnected ? null :
+            socket = io.connect(`ws://${Common.common.localHost}:8001`);
+        isConnected = true;
+        socket.emit('login',data);
         socket.on('login',(o)=>{
             dispatch({
                 type:Common.chat.LOGIN,
@@ -23,7 +27,7 @@ export function buildConnect(data){
                 data:msg
             });
         });
-        socket.on('to'+data.username,(data)=>{
+        socket.on('to'+data.userid,(data)=>{
             dispatch({
                 type:Common.chat.PRIVATE_MESSAGE,
                 data:data
@@ -50,3 +54,4 @@ export function sendMessage(data){
         socket.emit('private message',data.username,data.to,data.msg);
     }
 }
+

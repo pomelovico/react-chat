@@ -9,4 +9,9 @@ module.exports = function(app){
             usersCtrl.userLogin(req,res);
         });
 
+    app.route('/api/chatlist')
+        .post(function(req,res){
+            usersCtrl.userChatList(req,res);
+        });
+
 };

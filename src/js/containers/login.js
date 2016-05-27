@@ -14,18 +14,25 @@ class Login extends Component{
             this.props.login('login',{username:name, userpwd:pwd});
         }
     }
+    componentWillMount(){
+        this.props.autoLogin('login');
+    }
     componentWillReceiveProps(nextProps){
         if(nextProps.user.islogin) {
-            this.context.router.push('chatroom');
+            this.context.router.push('chatlist');
         }
     }
     render() {
         return (<div id="login-page" >
-            <div>
-                <label >name:</label><input  type="text" ref="name" /><br/>
-                <label >password:</label><input type="password" ref="pwd"  /><br/>
-                <button onClick={()=>this.toLogin()} className="btn btn-block" >login</button>
-            </div>
+            <from role="form">
+                <div className="form-group">
+                    <label >name:</label><input  type="text" ref="name" className="form-control" />
+                </div>
+                <div className="form-group">
+                    <label >password:</label><input type="password" ref="pwd" className="form-control" />
+                </div>
+                <button type="button" onClick={()=>this.toLogin()} className="btn btn-success btn-block" >login</button>
+            </from>
         </div>)
     }
 }
@@ -41,6 +48,7 @@ export default connect(state=>{
 },dispatch=>{
     let actions = bindActionCreators(Action.user, dispatch);
     return {
-        login:actions.login
+        login:actions.login,
+        autoLogin:actions.autoLogin
     }
 })(Login)
