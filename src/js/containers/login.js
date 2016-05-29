@@ -4,6 +4,7 @@
 import React,{Component} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
+import {Link} from 'react-router';
 
 class Login extends Component{
     toLogin(){
@@ -33,6 +34,8 @@ class Login extends Component{
                 </div>
                 <button type="button" onClick={()=>this.toLogin()} className="btn btn-success btn-block" >login</button>
             </from>
+            <br/>
+            <Link to='user/register'>don't have account? go to register</Link>
         </div>)
     }
 }

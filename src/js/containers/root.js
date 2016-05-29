@@ -14,6 +14,7 @@ import Chatroom from './chatroom';
 import ChatList from './chatList';
 import Login from './login';
 import Home from './home';
+import Register from './user/register';
 
 
 const appHistory = useRouterHistory(createHistory)({
@@ -31,6 +32,7 @@ export default class Root extends Component{
                     <Route path='login' component={Login}/>
                     <Route path='chatlist' component={ChatList}/>
                     <Route path='chatroom/:id' component={Chatroom}/>
+                    <Route path='user/register' component={Register}/>
                 </Route>
             </Router>
         </Provider>)

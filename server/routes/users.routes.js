@@ -8,7 +8,10 @@ module.exports = function(app){
         .post(function(req,res){
             usersCtrl.userLogin(req,res);
         });
-
+    app.route('/api/user/regist')
+        .post(function(req,res){
+            usersCtrl.userRegist(req,res);
+        });
     app.route('/api/chatlist')
         .post(function(req,res){
             usersCtrl.userChatList(req,res);

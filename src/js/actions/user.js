@@ -61,3 +61,14 @@ export function getChatList(url,data){
         })
     }
 }
+
+export function regist(url,data){
+    return dispatch=>{
+        return request.post(`api/${url}`, data).then(res=>{
+            dispatch({
+                type: Common.user.REGIST,
+                data: res.Content
+            });
+        })
+    }
+}
